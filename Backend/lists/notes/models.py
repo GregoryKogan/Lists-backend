@@ -19,7 +19,9 @@ DESC_VIEW_CHOICES = [
 
 
 class Note(models.Model):
-    owner = models.ForeignKey('auth.User', related_name='notes', on_delete=models.CASCADE)
+    owner = models.ForeignKey(
+        "auth.User", related_name="notes", on_delete=models.CASCADE
+    )
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     title = models.CharField(max_length=100, blank=True, default="")
@@ -56,7 +58,9 @@ COLOR_CHOICES = [
 
 
 class Item(models.Model):
-    note = models.ForeignKey('notes.Note', related_name='items', on_delete=models.CASCADE)
+    note = models.ForeignKey(
+        "notes.Note", related_name="items", on_delete=models.CASCADE
+    )
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     title = models.CharField(max_length=100, blank=True, default="")

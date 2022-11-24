@@ -1,15 +1,15 @@
 from rest_framework import serializers
-from notes.models import Note
+from notes.models import Note, Item
 
 
 class NoteSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.username')
+    owner = serializers.ReadOnlyField(source="owner.username")
 
     class Meta:
         model = Note
         fields = [
             "id",
-            'owner',
+            "owner",
             "title",
             "created",
             "updated",
@@ -22,4 +22,22 @@ class NoteSerializer(serializers.ModelSerializer):
             "descriptions",
             "descriptions_view",
             "show_date",
+        ]
+
+
+class ItemSerializer(serializers.ModelSerializer):
+    note = serializers.ReadOnlyField(source="note.title")
+
+    class Meta:
+        model = Note
+        fields = [
+            "id",
+            "note",
+            "created",
+            "updated",
+            "title",
+            "description",
+            "rating",
+            "ticked",
+            "color",
         ]
