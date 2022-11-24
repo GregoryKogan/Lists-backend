@@ -42,3 +42,25 @@ class Note(models.Model):
 
     class Meta:
         ordering = ["updated"]
+
+
+COLOR_CHOICES = [
+    ("rd", "red"),
+    ("oe", "orange"),
+    ("yw", "yellow"),
+    ("gn", "green"),
+    ("be", "blue"),
+    ("pe", "purple"),
+    ("gy", "grey"),
+]
+
+
+class Item(models.Model):
+    note = models.ForeignKey('notes.Note', related_name='items', on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    title = models.CharField(max_length=100, blank=True, default="")
+    description = models.TextField(blank=True, default="")
+    rating = models.DecimalField(default=0.0, decimal_places=1, max_digits=2)
+    ticked = models.BooleanField(default=False)
+    color = models.CharField(choices=COLOR_CHOICES, default="red", max_length=20)
