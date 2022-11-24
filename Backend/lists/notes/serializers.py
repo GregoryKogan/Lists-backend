@@ -26,12 +26,14 @@ class NoteSerializer(serializers.ModelSerializer):
 
 
 class ItemSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source="owner.username")
     note = serializers.ReadOnlyField(source="note.title")
 
     class Meta:
         model = Note
         fields = [
             "id",
+            "owner",
             "note",
             "created",
             "updated",

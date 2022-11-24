@@ -58,6 +58,9 @@ COLOR_CHOICES = [
 
 
 class Item(models.Model):
+    owner = models.ForeignKey(
+        "auth.User", related_name="items", on_delete=models.CASCADE
+    )
     note = models.ForeignKey(
         "notes.Note", related_name="items", on_delete=models.CASCADE
     )

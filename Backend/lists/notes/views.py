@@ -12,6 +12,7 @@ class NoteList(APIView):
     """
     List all notes, or create a new snippet.
     """
+
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, format=None):
