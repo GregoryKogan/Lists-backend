@@ -30,7 +30,7 @@ class ItemSerializer(serializers.ModelSerializer):
     note = serializers.ReadOnlyField(source="note.title")
 
     class Meta:
-        model = Note
+        model = Item
         fields = [
             "id",
             "owner",
