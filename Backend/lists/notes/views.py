@@ -64,3 +64,9 @@ class ItemsOfNote(APIView):
             serializer.save(owner=self.request.user, note=note)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ItemDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
+    permission_classes = [permissions.IsAuthenticated, IsOwner]
