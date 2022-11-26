@@ -39,6 +39,7 @@ class ItemsOfNote(APIView):
     """
     List all items of some note or create a new item in it.
     """
+
     permission_classes = [permissions.IsAuthenticated]
 
     def get_note(self, request, note_pk):
