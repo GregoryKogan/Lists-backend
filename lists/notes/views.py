@@ -1,12 +1,11 @@
 from notes.models import Note, Item
 from notes.serializers import NoteSerializer, ItemSerializer
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, status
 from notes.permissions import IsOwner
 from django.http import Http404
 from django.core.exceptions import PermissionDenied
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
 
 
 class NoteList(APIView):
